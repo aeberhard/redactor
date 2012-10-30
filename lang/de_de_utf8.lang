@@ -1,0 +1,68 @@
+# Addon: redactor
+#----------------
+
+# Addon-Eintrag und Addon-Titel
+redactor_menu_link = Redactor Editor
+redactor_title = Redactor WYSIWYG Editor <span style="font-size:10px;">(Version 0.4)</span>
+
+# Versionen
+redactor_version = 0.4
+redactor_versinfo = redactor.js Version 8.1.1 , <a href="http://imperavi.com/redactor/" onclick="window.open(this.href); return false;">http://imperavi.com/redactor/</a>
+
+# Menüeinträge
+redactor_menu_info = Erklärung
+redactor_menu_settings = Konfiguration
+redactor_menu_profiles = Editor-Profile
+redactor_menu_css = CSS für Redactor
+
+# Konfiguration
+redactor_config_title = Redactor-Konfiguration
+redactor_active_be = Backend aktiv
+redactor_active_fe = Frontend aktiv
+redactor_config_excludecats = Bei folgenden Pages (Backend) bzw. Kategorien (Frontend) nicht ausführen
+redactor_config_excludeids = Bei folgenden Subpages (Backend) bzw. Seiten (Frontend) nicht ausführen
+redactor_config_csv = <em>(kommaseparierte Liste)</em>
+
+# Profil-Verwaltung
+redactor_listtitle = Editor-Profile
+redactor_listsummary = In dieser Tabelle sind alle definierten Editor-Profile enthalten
+redactor_addentry = Editor-Profil erstellen
+redactor_name = Name
+redactor_description = Beschreibung
+redactor_lang = Sprache
+redactor_configuration = Redactor-Konfiguration
+redactor_func = Funktionen
+redactor_delentry = löschen
+redactor_back = Zurück zur Übersicht
+redactor_fieldset = Editor-Profil bearbeiten
+redactor_select = Bitte Sprache auswählen
+
+# CSS-Verwaltung
+redactor_css_title = CSS für Redactor
+redactor_css_text = CSS für Editor und Vorschau
+redactor_css_infotitle = Hinweis
+redactor_css_info = Die hier angegebenen CSS-Anweisungen können bei der Konfiguration über folgenden Parameter eingefügt werden:<br /><strong>content_css : 'index.php?redactorcss=true'</strong><br /><br />Die Darstellung des Redactor-Editors und der Redactor-Vorschau können dadurch beeinflusst werden. Weitere Informationen finden sich in der Redactor-Dokumentation.
+
+# Fehler und Info-Meldungen
+redactor_error_notwriteable = Konfigurationsdatei "{0}" ist nicht beschreibbar!
+redactor_config_saved = Konfiguration wurde aktualisiert!
+redactor_config_not_saved = Konfiguration konnte nicht gespeichert werden!
+redactor_profile_deleted = Editor-Profil wurde gelöscht!
+redactor_profile_notdeleted = Editor-Profil mit ID=2 (default) darf nicht gelöscht werden!
+redactor_profiles_nodata = Keine Editor-Profile vorhanden!
+redactor_profiles_noname = Kein Name angegeben!
+redactor_profiles_nameinvalid = Name enthält ungültige Zeichen (nur a-z und 0-9 erlaubt)!
+redactor_profiles_nodesc = Keine Beschreibung angegeben!
+redactor_profiles_noconfig = Keine Redactor-Konfiguration angegeben!
+redactor_css_saved = CSS wurde aktualisiert!
+redactor_css_not_saved = CSS konnte nicht gespeichert werden!
+
+# Erklärung / Hilfe / Module
+redactor_shorthelp = Das Addon bindet den WYSIWYG-Editor redactor im Backend und bei Bedarf auch im Frontend ein.
+redactor_longhelp = <br />Abhängig von der <a href="index.php?page=redactor&amp;subpage=settings">Konfiguration</a> des Redactor-Addons wird automatisch im Backend und im Frontend<br />der Redactor-WYSIWYG-Editor für Textareas eingebunden.<br /><br />Textareas mit der Klasse <em>redactorEditor</em> werden automatisch von einem normalen Texteingabefeld<br />in einen WYSIWYG-Editor umgewandelt.<br />z.B.: &lt;textarea <strong>class="redactorEditor"</strong>&gt;&lt;/textarea&gt;<br /><br />Im Backend können verschiedene <a href="index.php?page=redactor&amp;subpage=profiles">Editor-Profile</a> mit unterschiedlichen Konfigurationseinstellungen für den Redactor-Editor angelegt werden. Diese Editor-Profile können durch anhängen des Profil-Namens an die Klasse angewendet werden.<br />z.B.: &lt;textarea <strong>class="redactorEditor-simple"</strong>&gt;&lt;/textarea&gt;
+redactor_nodel_notice = <strong>HINWEIS:</strong><br />Der Eintrag mit der <strong>ID=2</strong> und Name <strong>default</strong> darf nicht gelöscht werden!
+
+redactor_title_module_input = Code-Beispiel für Moduleingabe
+redactor_help_module_input = Um eine Textarea in einen WYSIWYG-Editor mit Redactor zu verwandeln reicht es der Textarea die Klasse <strong>redactorEditor</strong> zuzuweisen.<br />Durch anhängen eines bestehenden <a href="index.php?page=redactor&amp;subpage=profiles">Editor-Profil-Namens</a> an die Klasse kann der Redactor für jede Textarea individuell angepasst werden.<br />z.B.: &lt;textarea <strong>class="redactorEditor-simple"</strong>&gt;&lt;/textarea&gt;
+redactor_title_module_output = Code-Beispiel für Modulausgabe
+redactor_help_module_output = Für die Ausgabe ist es ausreichend im Output-Modul die Variable <strong>REX_HTML_VALUE[1]</strong> anzugeben.<br />Hier ein Beispiel mit einer IF-Abfrage um eine leere Ausgabe zu vermeiden.

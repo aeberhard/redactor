@@ -1,0 +1,52 @@
+buttonsCustom: {
+	rex_image: {
+		title: 'Bild einfügen', 
+		callback: rex_redactor_image
+	},
+	rex_media: {
+		title: 'Dateilink', 
+		callback: rex_redactor_media,
+		dropdown: {
+			rex_media_ins: {
+				title: 'Dateilink einfügen ...',
+				callback: rex_redactor_media_ins
+			},
+			rex_media_del: {
+				title: 'Dateilink entfernen',
+				callback: rex_redactor_media_del
+			}
+		}
+	},
+	rex_link: {
+		title: 'Interner Link', 
+		callback: rex_redactor_link,
+		dropdown: {
+			rex_link_ins: {
+				title: 'Internen Link einfügen ...',
+				callback: rex_redactor_link_ins
+			},
+			rex_link_del: {
+				title: 'Internen Link entfernen',
+				callback: rex_redactor_link_del
+			}
+		}
+		
+	}
+},
+
+buttons: [
+	'formatting', '|',
+	'bold', 'italic', 'deleted', '|',
+	'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+	'alignment', '|',
+	'rex_link', 'link', 'rex_image', 'rex_media', '|',
+	'horizontalrule', '|', 
+	'html' 
+	],
+	
+focus: false,
+autoresize: false,
+cleanup: true,
+convertLinks: false,
+fixedBox: true,
+wym: false,
