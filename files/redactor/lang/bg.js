@@ -65,6 +65,6 @@ RELANG['bg'] = {
 	none: 'Няма',
 	anchor: 'Котва',
 	link_new_tab: 'Отваряне в нов таб',
-	underline: 'Underline',
-	alignment: 'Alignment'
+	underline: 'Подчертай',
+	alignment: 'Подравняване'
 };

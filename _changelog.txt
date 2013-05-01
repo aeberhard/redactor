@@ -1,4 +1,7 @@
-Addon: redactor Version 0.4
+Addon: redactor Version 0.5
+
+Version 0.5 (2013-05-xx)
+  - Redactor v8.2.6
 
 Version 0.4 (2012-10-31)
   - Redactor v8.1.1
