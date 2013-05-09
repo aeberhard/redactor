@@ -1,8 +1,10 @@
 Addon: redactor Version 0.5
 
-Version 0.5 (2013-05-xx)
+Version 0.5 (2013-05-07)
   - Redactor v8.2.6
-
+  - Konfiguration erweitert um Bildparameter
+  - Einbindung von Bildern, interne Redaxo-Links, Dateilinks
+	 
 Version 0.4 (2012-10-31)
   - Redactor v8.1.1
   - CSS + JavaScript für Anbindung Linkmap/Medienpool  

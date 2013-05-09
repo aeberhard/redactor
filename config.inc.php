@@ -20,7 +20,13 @@ if (!isset($REX['FRONTEND_FILE']))
 {
   $REX['FRONTEND_FILE'] = 'index.php';
 }
-  
+
+// Fix für REDAXO < 4.5.x
+if (!isset($REX['MEDIA_DIR'])) 
+{
+  $REX['MEDIA_DIR'] = 'files';
+}
+
 // Backend
 if ($REX['REDAXO'])
 {
@@ -69,9 +75,17 @@ if ($REX['REDAXO'])
 $REX['ADDON']['redactor']['backend'] = '1';
 $REX['ADDON']['redactor']['frontend'] = '1';
 $REX['ADDON']['redactor']['excludecats'] = 'redactor';
-$REX['ADDON']['redactor']['excludeids'] = 'a356_ajax';
+$REX['ADDON']['redactor']['excludeids'] = '';
+$REX['ADDON']['redactor']['imageparams'] = '%FRONTEND_FILE%?redactorimg=';
 // --- /DYN
 
+
+// Img-Source
+$REX['redactor']['IMAGE_SRC'] = str_replace('%FRONTEND_FILE%', $REX['FRONTEND_FILE'], $REX['ADDON']['redactor']['imageparams']);
+if (trim($REX['ADDON']['redactor']['imageparams'])=='')
+{
+	$REX['redactor']['IMAGE_SRC'] = $REX['HTDOCS_PATH'] . $REX['MEDIA_DIR'].'/';
+}
 
 // Include Functions
 include($REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/functions/functions.inc.php');

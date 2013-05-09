@@ -1,3 +1,12 @@
+<?php 
+// Hier kann der Konfigurationsparameter Bildparameter img-src
+// individuell für das Eingabemodul überschrieben werden
+// z.B. ImageManager
+//$_SESSION['redactor']['IMAGE_SRC'] = 'index.php?rex_img_type=ImgTypeName&rex_img_file=';
+// z.B. ImageResize
+//$_SESSION['redactor']['IMAGE_SRC'] = 'index.php?rex_resize=200a__';
+?>
+
 <strong>Fliesstext:</strong><br />
 
 <textarea name="VALUE[1]" class="redactorEditor" style="width:725px;height:350px;">REX_VALUE[1]</textarea>

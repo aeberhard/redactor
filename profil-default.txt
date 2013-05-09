@@ -1,33 +1,31 @@
-buttonsCustom: {
-	rex_image: {
+buttonsCustom:{
+	rex_image:{
 		title: 'Bild einfügen', 
 		callback: rex_redactor_image
 	},
-	rex_media: {
+	rex_media:{
 		title: 'Dateilink', 
-		callback: rex_redactor_media,
-		dropdown: {
-			rex_media_ins: {
+		dropdown:{
+			rex_media_ins:{
 				title: 'Dateilink einfügen ...',
 				callback: rex_redactor_media_ins
 			},
-			rex_media_del: {
+			rex_media_del:{
 				title: 'Dateilink entfernen',
-				callback: rex_redactor_media_del
+				exec: 'unlink'
 			}
 		}
 	},
-	rex_link: {
+	rex_link:{
 		title: 'Interner Link', 
-		callback: rex_redactor_link,
-		dropdown: {
+		dropdown:{
 			rex_link_ins: {
 				title: 'Internen Link einfügen ...',
 				callback: rex_redactor_link_ins
 			},
-			rex_link_del: {
+			rex_link_del:{
 				title: 'Internen Link entfernen',
-				callback: rex_redactor_link_del
+				exec: 'unlink'
 			}
 		}
 		
@@ -39,14 +37,19 @@ buttons: [
 	'bold', 'italic', 'deleted', '|',
 	'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
 	'alignment', '|',
-	'rex_link', 'link', 'rex_image', 'rex_media', '|',
+	'link', 'rex_link', 'rex_image', 'rex_media', '|',
 	'horizontalrule', '|', 
 	'html' 
 	],
-	
+
 focus: false,
 autoresize: false,
 cleanup: true,
 convertLinks: false,
 fixedBox: true,
 wym: false,
+plugins: ['fullscreen'],
+
+rex_linktitle: true,
+rex_mediatitle: true,
+rex_filetitle: true,

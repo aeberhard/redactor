@@ -6,7 +6,7 @@ redactor_menu_link = Redactor Editor
 redactor_title = Redactor WYSIWYG Editor <span style="font-size:10px;">(Version 0.5)</span>
 
 # Versionen
-redactor_version = 0.4
+redactor_version = 0.5
 redactor_versinfo = redactor.js Version 8.2.6 , <a href="http://imperavi.com/redactor/" onclick="window.open(this.href); return false;">http://imperavi.com/redactor/</a>
 
 # Menüeinträge
@@ -22,6 +22,8 @@ redactor_active_fe = Frontend aktiv
 redactor_config_excludecats = Bei folgenden Pages (Backend) bzw. Kategorien (Frontend) nicht ausführen
 redactor_config_excludeids = Bei folgenden Subpages (Backend) bzw. Seiten (Frontend) nicht ausführen
 redactor_config_csv = <em>(kommaseparierte Liste)</em>
+redactor_config_imageparams = Bildparameter img-src
+redactor_config_img = <strong>Beschreibung Bildparamter</strong><br /><br /><em>leer / keine Angabe</em><br />Bilder werden in der Form &lt;img src="<strong>../files/</strong><em>bildname</em>"&gt; eingefügt<br /><br /><em>%FRONTEND_FILE%?redactorimg=</em><br />Bilder werden in der Form &lt;img src="<strong>index.php?redactorimg=</strong><em>bildname</em>"&gt; eingefügt<br /><br /><em>%FRONTEND_FILE%?rex_img_type=ImgTypeName&amp;rex_img_file=</em><br />Bilder werden in der Form &lt;img src="<strong>index.php?rex_img_type=ImgTypeName&amp;rex_img_file=</strong><em>bildname</em>"&gt; eingefügt<br /><br /><em>%FRONTEND_FILE%?rex_resize=200a__</em><br />Bilder werden in der Form &lt;img src="<strong>index.php?rex_resize=200a__</strong><em>bildname</em>"&gt; eingefügt<br /><br />
 
 # Profil-Verwaltung
 redactor_listtitle = Editor-Profile
@@ -72,4 +74,3 @@ redactor_modul_install = <a href="index.php?page=redactor&amp;subpage=&amp;insta
 redactor_modul_added = Modul "{0}" wurde angelegt!
 redactor_modul_update = <a href="index.php?page=redactor&amp;subpage=&amp;install=1&amp;modul_id={1}">Bestehendes Modul "{0}" aktualisieren</a>
 redactor_modul_updated = Modul "{0}" wurde aktualisiert!
-

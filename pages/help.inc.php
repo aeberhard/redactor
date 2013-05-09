@@ -9,8 +9,7 @@
  * @package redaxo4
  * @version svn:$Id$
  */
- 
-	$modulname = 'Redactor-Texteditor';
+ 	$modulname = 'Redactor-Texteditor';
 	$install = rex_request('install', 'integer', 0);
 	$modulid = rex_request('modul_id', 'integer', 0);
 	

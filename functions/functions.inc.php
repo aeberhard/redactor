@@ -360,9 +360,6 @@ global $REX;
  * Addon redactor Version '.$REX['ADDON']['version']['redactor'].'
  */
 
-$ = jQuery;
-
-
 ';	
 
   echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.redactor.js');
@@ -371,6 +368,9 @@ $ = jQuery;
   echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/redactor.min.js');
   echo "\n\n\n";
   
+  echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/fullscreen.js');
+  echo "\n\n\n";
+
   $profileout = '';
   $profileout .= '// Init redactor-Profiles'."\n";
   $profileout .= '// ------------------------------------------------------------'."\n";
@@ -383,7 +383,7 @@ $ = jQuery;
   $sql->debugsql = 0;
   $sql->setQuery($query);
 
-  $defaulttiny = '';
+  $defaultredactor = '';
   $langinc = array();
   if ($sql->getRows() > 0)
   {
@@ -404,11 +404,11 @@ $ = jQuery;
 
       if ($sql->getValue('id') === '2') // default for class="redactorEditor"
       {
-        $defaulttiny = "\n\n\n// " . $sql->getValue('description');
-        $defaulttiny .= "\n// ------------------------------------------------------------";
-        $defaulttiny .= "\n" . 'jQuery(\'textarea.redactorEditor\').redactor({';
-        $defaulttiny .= "\n" . $configout;
-        $defaulttiny .= "\n});";
+        $defaultredactor = "\n\n\n// " . $sql->getValue('description');
+        $defaultredactor .= "\n// ------------------------------------------------------------";
+        $defaultredactor .= "\n" . 'jQuery(\'textarea.redactorEditor\').redactor({';
+        $defaultredactor .= "\n" . $configout;
+        $defaultredactor .= "\n});";
       }
 
       $profileout .= "\n\n\n// " . $sql->getValue('description');
@@ -421,10 +421,10 @@ $ = jQuery;
   }
   else
   {
-    $defaulttiny = 'alert("[Addon redactor] - Error! No default Profile found!")';
+    $defaultredactor = 'alert("[Addon redactor] - Error! No default Profile found!")';
   }
   echo $profileout;
-  echo $defaulttiny;
+  echo $defaultredactor;
   echo '
 
 
@@ -461,9 +461,8 @@ global $REX;
 // redactor Popup interface
 // ------------------------------------------------------------
 ';
-  echo rex_get_file_contents($REX['HTDOCS_PATH'] . '/files/addons/redactor/tiny_mce/tiny_mce_popup.js');
-  echo "\n\n";
-  $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . '/files/addons/redactor/rex.mediapool.js');
+
+  $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.mediapool.js');
   echo redactor_replace_vars($scriptout);
   echo "\n\n";
 
@@ -497,9 +496,8 @@ global $REX;
 // redactor Popup interface
 // ------------------------------------------------------------
 ';
-  echo rex_get_file_contents($REX['HTDOCS_PATH'] . '/files/addons/redactor/tiny_mce/tiny_mce_popup.js');
-  echo "\n\n";
-  $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . '/files/addons/redactor/rex.linkmap.js');
+
+  $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.linkmap.js');
   echo redactor_replace_vars($scriptout);
   echo "\n\n";
 
@@ -550,8 +548,8 @@ global $REX;
  * Bild chunked senden, um diverse probleme zu umgehen
  */
 
-if(!function_exists('tiny_readfile_chunked')) {
-  function tiny_readfile_chunked ($filename) {
+if(!function_exists('redactor_readfile_chunked')) {
+  function redactor_readfile_chunked($filename) {
     $chunksize = 1*(1024*1024); // how many bytes per chunk
     $buffer = '';
     $handle = fopen($filename, 'rb');
@@ -614,7 +612,7 @@ if (!function_exists('redactor_generate_image'))
       } else {
           header("Content-type: " . $ctype);
           header("Content-Length: " . filesize($file));
-          tiny_readfile_chunked($file);
+          redactor_readfile_chunked($file);
           exit;
       }
     }
@@ -634,6 +632,7 @@ global $REX;
 
   $content = $params['subject'];
   $page = rex_request('page', 'string');
+  $inputtype = rex_request('opener_input_field', 'string');
   if ($page === 'medienpool')
   {
     $page = 'mediapool';
@@ -650,7 +649,14 @@ global $REX;
     $replace[0] .= "\n" . '  <script src="' . $REX['HTDOCS_PATH'] . 'redaxo/index.php?redactormedia=true&amp;clang=' . $REX['CUR_CLANG'] . '&amp;opener_input_field=' . $oif . '" type="text/javascript"></script>' . "\n";
     $replace[0] .= "\n" . '</head>' . "\n";
     $search[1] = 'javascript:selectMedia(';
-    $replace[1] = 'javascript:redactor_selectMedia(';
+	 if ($inputtype=='REDACTORFILE')
+	 {
+		$replace[1] = 'javascript:redactor_selectFile(';
+	 }
+	 else
+	 {
+		$replace[1] = 'javascript:redactor_selectMedia(';
+	 }
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="redactor" value="true" /> <!-- inserted by redactor -->' . "\n";
     $search[3] = 'page=' . $page;
@@ -691,7 +697,8 @@ if (!function_exists('redactor_media_added'))
 function redactor_media_added($params)
 {
 global $REX;
-
+$inputtype = rex_request('opener_input_field', 'string');
+  
   if (rex_request('saveandexit', 'string', '') <> '')
   {
     $scriptoutput = "\n\n" . '  <!-- Addon redactor -->';
@@ -700,7 +707,14 @@ global $REX;
 
     $scriptoutput .= "\n" . '<script type="text/javascript">';
     $scriptoutput .= "\n" . '//<![CDATA[';
-    $scriptoutput .= "\n" . '    redactor_selectMedia("'.$params['filename'].'", "'.$params['title'].'")';
+	 if ($inputtype=='REDACTORFILE')
+	 {
+      $scriptoutput .= "\n" . '    redactor_selectFile("'.$params['filename'].'", "'.$params['title'].'")';
+	 }
+	 else
+	 {
+      $scriptoutput .= "\n" . '    redactor_selectMedia("'.$params['filename'].'", "'.$params['title'].'")';
+	 }
     $scriptoutput .= "\n" . '//]]>';
     $scriptoutput .= "\n" . '</script>';
     echo $scriptoutput;
@@ -729,9 +743,17 @@ global $REX;
   $scriptout = str_replace('%CLANG%', $REX['CUR_CLANG'], $scriptout);
   $scriptout = str_replace('%INCLUDE_PATH%', $REX['INCLUDE_PATH'], $scriptout);
   $scriptout = str_replace('%FRONTEND_PATH%', $REX['FRONTEND_PATH'], $scriptout);
-  $scriptout = str_replace('%MEDIAFOLDER%', $REX['MEDIAFOLDER'], $scriptout);
+  $scriptout = str_replace('%MEDIAFOLDER%', $REX['MEDIA_DIR'], $scriptout);
   $scriptout = str_replace('%FRONTEND_FILE%', $REX['FRONTEND_FILE'], $scriptout);
   $scriptout = str_replace('%HTTP_HOST%', $_SERVER['HTTP_HOST'], $scriptout);
+  if (isset($_SESSION['redactor']['IMAGE_SRC']) and trim($_SESSION['redactor']['IMAGE_SRC'])<>'')
+  {
+    $scriptout = str_replace('%IMAGE_SRC%', $_SESSION['redactor']['IMAGE_SRC'], $scriptout);
+  }
+  else
+  {
+	 $scriptout = str_replace('%IMAGE_SRC%', $REX['redactor']['IMAGE_SRC'], $scriptout);
+  }  
   $scriptout = str_replace('%OPENER_INPUT_FIELD%', $oif, $scriptout);
   if ($REX['VERSION'] . $REX['SUBVERSION'] < '42')
   {
