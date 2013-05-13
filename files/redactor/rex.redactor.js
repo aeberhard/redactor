@@ -57,3 +57,7 @@ function rex_redactor_link_ins(obj, event, key)
 	actualredactor = obj;
 	openLinkMap('VALUE[1]', '&redactor=true&clang='+redactor_getURLParam('clang'));
 }
+
+/* Accesskey-Fix */
+
+var rex_accesskeysEnabled = false;
