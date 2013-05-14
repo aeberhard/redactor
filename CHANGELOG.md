@@ -1,5 +1,9 @@
-Changelog redactor-Addon Version 0.5
+Changelog redactor-Addon Version 0.6
 ====================================
+
+### Version 0.6 (2013-05-xx)
+* Bildeigenschaften und Link einfügen erweitert um interne Redaxo-Links
+* Bugfix Accesskeys
 
 ### Version 0.5 (2013-05-07)
 

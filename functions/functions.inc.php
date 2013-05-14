@@ -390,17 +390,18 @@ global $REX;
     for ($i = 0; $i < $sql->getRows(); $i ++)
     {
       $configout = trim($sql->getValue('configuration'));
-		$configout = rtrim($configout, ',');
+      $configout = rtrim($configout, ',');
       $configout = redactor_replace_vars($configout);
-      $configout = 'lang: \''.$sql->getValue('lang').'\', '."\n" . $configout;
+      $configout = 'lang: \''.$sql->getValue('lang').'\', ' . "\n" . $configout;
+      $configout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.default.config.js') . "\n" . $configout;
 
-		if (trim($sql->getValue('lang'))<>'' and !isset($langinc[$sql->getValue('lang')]))
-		{
+      if (trim($sql->getValue('lang'))<>'' and !isset($langinc[$sql->getValue('lang')]))
+      {
         $langjs = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/lang/'.$sql->getValue('lang').'.js');
-		  $langjs = str_replace('var RELANG = {};', '', $langjs);
-		  echo $langjs . "\n\n\n";
-		  $langinc[$sql->getValue('lang')] = '1';
-		}
+        $langjs = str_replace('var RELANG = {};', '', $langjs);
+        echo $langjs . "\n\n\n";
+        $langinc[$sql->getValue('lang')] = '1';
+      }
 
       if ($sql->getValue('id') === '2') // default for class="redactorEditor"
       {
@@ -649,14 +650,14 @@ global $REX;
     $replace[0] .= "\n" . '  <script src="' . $REX['HTDOCS_PATH'] . 'redaxo/index.php?redactormedia=true&amp;clang=' . $REX['CUR_CLANG'] . '&amp;opener_input_field=' . $oif . '" type="text/javascript"></script>' . "\n";
     $replace[0] .= "\n" . '</head>' . "\n";
     $search[1] = 'javascript:selectMedia(';
-	 if ($inputtype=='REDACTORFILE')
-	 {
-		$replace[1] = 'javascript:redactor_selectFile(';
-	 }
-	 else
-	 {
-		$replace[1] = 'javascript:redactor_selectMedia(';
-	 }
+    if ($inputtype=='REDACTORFILE')
+    {
+      $replace[1] = 'javascript:redactor_selectFile(';
+    }
+    else
+    {
+      $replace[1] = 'javascript:redactor_selectMedia(';
+    }
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="redactor" value="true" /> <!-- inserted by redactor -->' . "\n";
     $search[3] = 'page=' . $page;
@@ -707,14 +708,14 @@ $inputtype = rex_request('opener_input_field', 'string');
 
     $scriptoutput .= "\n" . '<script type="text/javascript">';
     $scriptoutput .= "\n" . '//<![CDATA[';
-	 if ($inputtype=='REDACTORFILE')
-	 {
+    if ($inputtype=='REDACTORFILE')
+    {
       $scriptoutput .= "\n" . '    redactor_selectFile("'.$params['filename'].'", "'.$params['title'].'")';
-	 }
-	 else
-	 {
+    }
+    else
+    {
       $scriptoutput .= "\n" . '    redactor_selectMedia("'.$params['filename'].'", "'.$params['title'].'")';
-	 }
+    }
     $scriptoutput .= "\n" . '//]]>';
     $scriptoutput .= "\n" . '</script>';
     echo $scriptoutput;
@@ -752,7 +753,7 @@ global $REX;
   }
   else
   {
-	 $scriptout = str_replace('%IMAGE_SRC%', $REX['redactor']['IMAGE_SRC'], $scriptout);
+    $scriptout = str_replace('%IMAGE_SRC%', $REX['redactor']['IMAGE_SRC'], $scriptout);
   }  
   $scriptout = str_replace('%OPENER_INPUT_FIELD%', $oif, $scriptout);
   if ($REX['VERSION'] . $REX['SUBVERSION'] < '42')
