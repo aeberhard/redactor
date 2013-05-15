@@ -3,7 +3,7 @@
 				'<div id="redactor_modal_content">' +
 				'<label>' + RLANG.title + '</label>' +
 				'<input id="redactor_file_alt" class="redactor_input" />' +
-				'<label>' + RLANG.link + '&nbsp;&nbsp;&nbsp;<a href="javascript:rex_redactor_link_url(\'redactor_file_link\')"><strong>Internen Link einfügen</strong></a></label>' +
+				'<label>' + RLANG.link + '&nbsp;&nbsp;&nbsp;<a href="javascript:rex_redactor_link_url(\'redactor_file_link\')"><strong>'+RLANG.link_insert+'</strong></a></label>' +
 				'<input id="redactor_file_link" class="redactor_input" />' +
 				'<label>' + RLANG.image_position + '</label>' +
 				'<select id="redactor_form_image_align">' +
@@ -28,7 +28,7 @@
 					'</div>' +
 					'<input type="hidden" id="redactor_tab_selected" value="1" />' +
 					'<div class="redactor_tab" id="redactor_tab1">' +
-						'<label>URL&nbsp;&nbsp;&nbsp;<a href="javascript:rex_redactor_link_url(\'redactor_link_url\')"><strong>Internen Link einfügen</strong></a></label><input type="text" id="redactor_link_url" class="redactor_input"  />' +
+						'<label>URL&nbsp;&nbsp;&nbsp;<a href="javascript:rex_redactor_link_url(\'redactor_link_url\')"><strong>'+RLANG.link_insert+'</strong></a></label><input type="text" id="redactor_link_url" class="redactor_input"  />' +
 						'<label>' + RLANG.text + '</label><input type="text" class="redactor_input redactor_link_text" id="redactor_link_url_text" />' +
 						'<label><input type="checkbox" id="redactor_link_blank"> ' + RLANG.link_new_tab + '</label>' +
 					'</div>' +

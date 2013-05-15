@@ -55,12 +55,12 @@ function rex_redactor_image(obj, event, key)
 function rex_redactor_link_ins(obj, event, key)
 {
 	actualredactor = obj;
-	openLinkMap('VALUE[1]', '&redactor=true&clang='+redactor_getURLParam('clang'));
+	openLinkMap('redactor', '&redactor=true&clang='+redactor_getURLParam('clang'));
 }
 
 function rex_redactor_link_url(fieldid)
 {
-	openLinkMap(fieldid, '&redactor=true&opener_input_field_name='+fieldid+'&clang='+redactor_getURLParam('clang'));
+	openLinkMap(fieldid, '&redactor=true&clang='+redactor_getURLParam('clang'));
 }
 
 /* Accesskey-Fix */

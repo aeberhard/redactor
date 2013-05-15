@@ -371,8 +371,7 @@ global $REX;
   echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/fullscreen.js');
   echo "\n\n\n";
 
-  $profileout = '';
-  $profileout .= '// Init redactor-Profiles'."\n";
+  $profileout = '// Init redactor-Profiles'."\n";
   $profileout .= '// ------------------------------------------------------------'."\n";
   $profileout .= 'jQuery(document).ready(function($) {'."\n";
 
@@ -407,6 +406,7 @@ global $REX;
       {
         $defaultredactor = "\n\n\n// " . $sql->getValue('description');
         $defaultredactor .= "\n// ------------------------------------------------------------";
+  		  $defaultredactor .= "\n".'RLANG = RELANG[\''.$sql->getValue('lang').'\']; ';
         $defaultredactor .= "\n" . 'jQuery(\'textarea.redactorEditor\').redactor({';
         $defaultredactor .= "\n" . $configout;
         $defaultredactor .= "\n});";
@@ -414,6 +414,7 @@ global $REX;
 
       $profileout .= "\n\n\n// " . $sql->getValue('description');
       $profileout .= "\n// ------------------------------------------------------------";
+		$profileout .= "\n".'RLANG = RELANG[\''.$sql->getValue('lang').'\']; ';
       $profileout .= "\n" . 'jQuery(\'textarea.redactorEditor-'.$sql->getValue('name').'\').redactor({';
       $profileout .= "\n" . $configout;
       $profileout .= "\n});";
