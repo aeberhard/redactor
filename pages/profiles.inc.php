@@ -125,23 +125,29 @@ if ($func == '')
   $list->addColumn($imgHeader, $img, 0, array('<th class="rex-icon">###VALUE###</th>','<td class="rex-icon">###VALUE###</td>'));
   $list->setColumnParams($imgHeader, array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
   
-  $list->removeColumn('id');
-  $list->addTableColumnGroup(array(40, '*', '*', 60, 80));
+  if ($REX['VERSION'] . $REX['SUBVERSION'] <= '40')
+  {
+  }
+  else
+  {  
+    $list->removeColumn('id');
+    $list->addTableColumnGroup(array(40, '*', '*', 60, 80));
 
-  $list->setColumnLabel('name', $I18N->msg('redactor_name'));
-  $list->setColumnParams('name', array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
+    $list->setColumnLabel('name', $I18N->msg('redactor_name'));
+    $list->setColumnParams('name', array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
 
-  $list->setColumnLabel('description', $I18N->msg('redactor_description'));
-  $list->setColumnParams('description', array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
+    $list->setColumnLabel('description', $I18N->msg('redactor_description'));
+    $list->setColumnParams('description', array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
 
-  $list->setColumnLabel('lang', $I18N->msg('redactor_lang'));
-  $list->setColumnParams('lang', array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
+    $list->setColumnLabel('lang', $I18N->msg('redactor_lang'));
+    $list->setColumnParams('lang', array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
 
-  $list->addColumn($I18N->msg('redactor_func'), $I18N->msg('redactor_delentry'));
-  $list->setColumnParams($I18N->msg('redactor_func'), array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'delete', 'entry_id' => '###id###'));
+    $list->addColumn($I18N->msg('redactor_func'), $I18N->msg('redactor_delentry'));
+    $list->setColumnParams($I18N->msg('redactor_func'), array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'delete', 'entry_id' => '###id###'));
 
-  $list->addLinkAttribute($I18N->msg('redactor_func'), 'onclick', 'return confirm(\'[###name###] - '.$I18N->msg('redactor_delentry').' ?\')');
-  $list->setNoRowsMessage($I18N->Msg('redactor_profiles_nodata'));
+    $list->addLinkAttribute($I18N->msg('redactor_func'), 'onclick', 'return confirm(\'[###name###] - '.$I18N->msg('redactor_delentry').' ?\')');
+    $list->setNoRowsMessage($I18N->Msg('redactor_profiles_nodata'));
+  }
 
   $list->show();
   echo '</div>';

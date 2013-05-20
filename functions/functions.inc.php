@@ -309,10 +309,6 @@ function redactor_output_filter($content)
 
   $search = '</head>';
   $replace  = "\n\n" . '  <!-- Addon redactor -->';
-  if ($REX['VERSION'] . $REX['SUBVERSION'] <= '40')
-  {
-    $replace .= "\n" .'<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>';
-  }  
   $replace .= "\n" . '  <link rel="stylesheet" type="text/css" href="' . $REX['HTDOCS_PATH'] . $rp . '?redactorcss=true" media="screen, projection, print" />';
   $replace .= "\n" . '  <script src="' . $REX['HTDOCS_PATH'] . $rp . '?redactorinit=true&amp;clang=' . $REX['CUR_CLANG'] . '" type="text/javascript"></script>' . "\n";
   $replace .= "\n" . '</head>' . "\n";
@@ -362,7 +358,14 @@ global $REX;
 
 ';	
 
-  echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.redactor.js');
+  // aktuellere jQuery-Version einbinden
+  if ($REX['VERSION'] . $REX['SUBVERSION'] < '45')
+  {
+    echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/jquery.min.js');
+    echo "\n\n\n";
+  }
+
+  echo redactor_replace_vars(rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.redactor.js'));
   echo "\n\n\n";
 
   echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/redactor.min.js');
@@ -394,19 +397,21 @@ global $REX;
       $configout = 'lang: \''.$sql->getValue('lang').'\', ' . "\n" . $configout;
       $configout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.default.config.js') . "\n" . $configout;
 
-      if (trim($sql->getValue('lang'))<>'' and !isset($langinc[$sql->getValue('lang')]))
+      $ilang = $sql->getValue('lang');
+      if ($ilang=='') $ilang = 'en';
+      if (!isset($langinc[$ilang]))
       {
-        $langjs = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/lang/'.$sql->getValue('lang').'.js');
+        $langjs = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/lang/'.$ilang.'.js');
         $langjs = str_replace('var RELANG = {};', '', $langjs);
         echo $langjs . "\n\n\n";
-        $langinc[$sql->getValue('lang')] = '1';
+        $langinc[$ilang] = '1';
       }
 
       if ($sql->getValue('id') === '2') // default for class="redactorEditor"
       {
         $defaultredactor = "\n\n\n// " . $sql->getValue('description');
         $defaultredactor .= "\n// ------------------------------------------------------------";
-  		  $defaultredactor .= "\n".'RLANG = RELANG[\''.$sql->getValue('lang').'\']; ';
+        $defaultredactor .= "\n".'RLANG = RELANG[\''.$ilang.'\']; ';
         $defaultredactor .= "\n" . 'jQuery(\'textarea.redactorEditor\').redactor({';
         $defaultredactor .= "\n" . $configout;
         $defaultredactor .= "\n});";
@@ -414,7 +419,7 @@ global $REX;
 
       $profileout .= "\n\n\n// " . $sql->getValue('description');
       $profileout .= "\n// ------------------------------------------------------------";
-		$profileout .= "\n".'RLANG = RELANG[\''.$sql->getValue('lang').'\']; ';
+      $profileout .= "\n".'RLANG = RELANG[\''.$ilang.'\']; ';
       $profileout .= "\n" . 'jQuery(\'textarea.redactorEditor-'.$sql->getValue('name').'\').redactor({';
       $profileout .= "\n" . $configout;
       $profileout .= "\n});";
@@ -464,6 +469,13 @@ global $REX;
 // ------------------------------------------------------------
 ';
 
+  // aktuellere jQuery-Version einbinden
+  if ($REX['VERSION'] . $REX['SUBVERSION'] < '45')
+  {
+    echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/jquery.min.js');
+    echo "\n\n\n";
+  }
+  
   $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.mediapool.js');
   echo redactor_replace_vars($scriptout);
   echo "\n\n";
@@ -499,6 +511,13 @@ global $REX;
 // ------------------------------------------------------------
 ';
 
+  // aktuellere jQuery-Version einbinden
+  if ($REX['VERSION'] . $REX['SUBVERSION'] < '45')
+  {
+    echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/jquery.min.js');
+    echo "\n\n\n";
+  }
+  
   $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.linkmap.js');
   echo redactor_replace_vars($scriptout);
   echo "\n\n";
@@ -767,5 +786,42 @@ global $REX;
   }
 
   return $scriptout;
+}
+} // End function_exists
+
+
+/**
+ * Fix html
+ */
+if (!function_exists('redactor_fixhtml'))
+{
+function redactor_fixhtml($html)
+{
+  $out = trim($html);
+  $out = htmlspecialchars_decode($out, ENT_QUOTES);
+  $search = array(
+    '<p></p>', 
+	'<hr>',
+    '<br>', 
+    '<b>', 
+    '</b>', 
+    '<i>', 
+    '</i>',
+	'"',
+	'\''
+  );
+  $replace = array(
+    '', 
+	'<hr />',
+    '<br />', 
+    '<strong>', 
+    '</strong>', 
+    '<em>', 
+    '</em>',
+	'&quot;',
+	'&#039;'
+  );
+  $out = str_replace($search, $replace, $out);
+  return $out;
 }
 } // End function_exists

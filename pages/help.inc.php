@@ -95,7 +95,7 @@
 		echo $I18N->msg('redactor_modul_update', $modulname, $modulid);
 	}
 ?>		 
-	 </li></ul>
+	 </li></ul><br />
     </p>
 
     <p class="rex-tx1">

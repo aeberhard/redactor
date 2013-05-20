@@ -30,7 +30,7 @@ function redactor_openMediaPool(id)
 	{
 		id = '';
 	}
-	newPoolWindow('index.php?page=mediapool&redactor=true&opener_input_field='+ id +'&clang='+redactor_getURLParam('clang'));
+	newPoolWindow('index.php?page=%MEDIAPOOL%&redactor=true&opener_input_field='+ id +'&clang='+redactor_getURLParam('clang'));
 }
 
 

@@ -1,9 +1,13 @@
 Changelog redactor-Addon Version 0.6
 ====================================
 
-### Version 0.6 (2013-05-xx)
+### Version 0.6 (2013-05-20)
+
 * Bildeigenschaften und Link einfügen erweitert um interne Redaxo-Links
 * Bugfix Accesskeys
+* Bugfix Sprachen, en.js neu aufgenommen
+* Compat für Redaxo 4.0
+* jQuery 1.8.3 für ältere Redaxo-Versionen
 
 ### Version 0.5 (2013-05-07)
 
