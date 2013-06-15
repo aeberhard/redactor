@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['eo'] = {
+(function ($) {
+$.Redactor.opts.langs['eo'] = {
 	html: 'HTML', // substantive
 	video: 'Enŝovu videon...', // imperative
 	image: 'Enŝovu bildon...', // imperative
@@ -38,7 +38,7 @@ RELANG['eo'] = {
 	rows: 'Vicoj', // substantive (plural)
 	columns: 'Kolumnoj', // substantive (plural)
 	add_head: 'Enŝovu kapon', // imperative
-	delete_head: 'Forigu kapon', // imperative	
+	delete_head: 'Forigu kapon', // imperative
 	title: 'Titolo', // substantive
 	image_position: 'Bildloko', // substantive
 	none: 'Neniu', // determiner
@@ -65,5 +65,7 @@ RELANG['eo'] = {
 	anchor: 'Ankro', // substantive
 	link_new_tab: 'Malfermu hiperligilon en novan langeton', // imperative
 	underline: 'Substrekita', // adjective
-	alignment: 'Ĝisrandigo' // substantive
+	alignment: 'Ĝisrandigo', // substantive
+	filename: 'Name (optional)'
 };
+})( jQuery );

@@ -52,15 +52,15 @@ if ($func == 'add' || $func == 'edit')
     while (false !== ($file = readdir($handle)))
     {
       if ($file != "." && $file != "..")
-	   {
-		  $va = explode('.', $file);
+      {
+        $va = explode('.', $file);
         $select->addOption($va[0], $va[0]);
       }
     }
     closedir($handle);
   }
   $select->setSize(1);
-  
+
   $field = &$form->addTextAreaField('configuration');
   $field->setLabel($I18N->Msg('redactor_configuration'));
   $field->setAttribute('style', 'height:300px;font-family:\'Courier New\';');
@@ -124,12 +124,12 @@ if ($func == '')
   // Das ist das ICON welches in der ICON-Spalte angezeigt wird.
   $list->addColumn($imgHeader, $img, 0, array('<th class="rex-icon">###VALUE###</th>','<td class="rex-icon">###VALUE###</td>'));
   $list->setColumnParams($imgHeader, array('page'=>$page, 'clang'=>$REX['CUR_CLANG'], 'subpage'=>$subpage, 'func' => 'edit', 'entry_id' => '###id###'));
-  
+
   if ($REX['VERSION'] . $REX['SUBVERSION'] <= '40')
   {
   }
   else
-  {  
+  {
     $list->removeColumn('id');
     $list->addTableColumnGroup(array(40, '*', '*', 60, 80));
 

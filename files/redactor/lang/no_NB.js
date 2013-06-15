@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['no_NB'] = {
+(function ($) {
+$.Redactor.opts.langs['no_NB'] = {
 	html: 'HTML',
 	video: 'Sett inn video...',
 	image: 'Sett inn bilde...',
@@ -64,5 +64,7 @@ RELANG['no_NB'] = {
 	anchor: 'Anker',
 	link_new_tab: 'Ã…pne link i ny fane',
 	underline: 'Underline',
-	alignment: 'Justering'
+	alignment: 'Justering',
+	filename: 'Name (optional)'
 };
+})( jQuery );

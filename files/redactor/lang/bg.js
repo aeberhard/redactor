@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['bg'] = {
+(function ($) {
+$.Redactor.opts.langs['bg'] = {
 	html: 'HTML',
 	video: 'Видео',
 	image: 'Изображение',
@@ -66,5 +66,7 @@ RELANG['bg'] = {
 	anchor: 'Котва',
 	link_new_tab: 'Отваряне в нов таб',
 	underline: 'Подчертай',
-	alignment: 'Подравняване'
+	alignment: 'Подравняване',
+	filename: 'Name (optional)'
 };
+})( jQuery );

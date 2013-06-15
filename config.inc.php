@@ -13,16 +13,16 @@
 $mypage = 'redactor';
 
 // Versionsnummer, auch in den Language-Files ändern
-$REX['ADDON']['version'][$mypage] = '0.6';
+$REX['ADDON']['version'][$mypage] = '0.7';
 
 // Fix für REDAXO < 4.2.x
-if (!isset($REX['FRONTEND_FILE'])) 
+if (!isset($REX['FRONTEND_FILE']))
 {
   $REX['FRONTEND_FILE'] = 'index.php';
 }
 
 // Fix für REDAXO < 4.5.x
-if (!isset($REX['MEDIA_DIR'])) 
+if (!isset($REX['MEDIA_DIR']))
 {
   $REX['MEDIA_DIR'] = 'files';
 }
@@ -35,7 +35,7 @@ if ($REX['REDAXO'])
   {
     $I18N = new i18n($REX['LANG'],$REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/lang/');
   }
-  
+
   // I18N, Addon-Titel für die Navigation
   if (isset($I18N) && is_object($I18N))
   {
@@ -48,7 +48,7 @@ if ($REX['REDAXO'])
     else
     {
       $I18N->appendFile($REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/lang/');
-    }  
+    }
     $REX['ADDON']['page'][$mypage] = $mypage;
     $REX['ADDON']['name'][$mypage] = $I18N->msg('redactor_menu_link');
   }
@@ -66,6 +66,8 @@ if ($REX['REDAXO'])
   $REX['ADDON'][$mypage]['SUBPAGES'][] = array ('settings', $I18N->msg('redactor_menu_settings'));
   $REX['ADDON'][$mypage]['SUBPAGES'][] = array ('profiles', $I18N->msg('redactor_menu_profiles'));
   $REX['ADDON'][$mypage]['SUBPAGES'][] = array ('css', $I18N->msg('redactor_menu_css'));
+  $REX['ADDON'][$mypage]['SUBPAGES'][] = array ('js', $I18N->msg('redactor_menu_js'));
+  $REX['ADDON'][$mypage]['SUBPAGES'][] = array ('clips', $I18N->msg('redactor_menu_clips'));
 }
 
 
@@ -84,7 +86,7 @@ $REX['ADDON']['redactor']['imageparams'] = '%FRONTEND_FILE%?redactorimg=';
 $REX['redactor']['IMAGE_SRC'] = str_replace('%FRONTEND_FILE%', $REX['FRONTEND_FILE'], $REX['ADDON']['redactor']['imageparams']);
 if (trim($REX['ADDON']['redactor']['imageparams'])=='')
 {
-	$REX['redactor']['IMAGE_SRC'] = $REX['HTDOCS_PATH'] . $REX['MEDIA_DIR'].'/';
+	$REX['redactor']['IMAGE_SRC'] = $REX['HTDOCS_PATH'] . $REX['MEDIA_DIR'] . '/';
 }
 
 // Include Functions

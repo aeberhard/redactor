@@ -3,17 +3,19 @@
 
 # Addon-Eintrag und Addon-Titel
 redactor_menu_link = Redactor Editor
-redactor_title = Redactor WYSIWYG Editor <span style="font-size:10px;">(Version 0.6)</span>
+redactor_title = Redactor WYSIWYG Editor <span style="font-size:10px;">(Version 0.7)</span>
 
 # Versionen
-redactor_version = 0.6
-redactor_versinfo = redactor.js Version 8.2.6 , <a href="http://imperavi.com/redactor/" onclick="window.open(this.href); return false;">http://imperavi.com/redactor/</a>
+redactor_version = 0.7
+redactor_versinfo = redactor.js Version 9.0.1 , <a href="http://imperavi.com/redactor/" onclick="window.open(this.href); return false;">http://imperavi.com/redactor/</a>
 
 # Menüeinträge
 redactor_menu_info = Erklärung
 redactor_menu_settings = Konfiguration
 redactor_menu_profiles = Editor-Profile
 redactor_menu_css = CSS für Redactor
+redactor_menu_js = JS für Redactor
+redactor_menu_clips = Clips
 
 # Konfiguration
 redactor_config_title = Redactor-Konfiguration
@@ -41,9 +43,21 @@ redactor_select = Bitte Sprache auswählen
 
 # CSS-Verwaltung
 redactor_css_title = CSS für Redactor
-redactor_css_text = CSS für Editor und Vorschau
+redactor_css_text = CSS für Redactor-Editor
 redactor_css_infotitle = Hinweis
-redactor_css_info = Die hier angegebenen CSS-Anweisungen können bei der Konfiguration über folgenden Parameter eingefügt werden:<br /><strong>content_css : 'index.php?redactorcss=true'</strong><br /><br />Die Darstellung des Redactor-Editors und der Redactor-Vorschau können dadurch beeinflusst werden. Weitere Informationen finden sich in der Redactor-Dokumentation.
+redactor_css_info = Die Darstellung des Redactor-Editors können dadurch beeinflusst werden. Weitere Informationen finden sich in der Redactor-Dokumentation.
+
+# JS-Verwaltung
+redactor_js_title = JavaScript für Redactor
+redactor_js_text = JS für Redactor-Editor
+redactor_js_infotitle = Hinweis
+redactor_js_info = Zusätzlicher JavaScript-Code z.B. für eigene Functions die bei Custom-Buttons verwendet werden.
+
+# Clips-Verwaltung
+redactor_clips_title = Clips für das clips-Plugin
+redactor_clips_text = Clips
+redactor_clips_infotitle = Hinweis
+redactor_clips_info = ...
 
 # Fehler und Info-Meldungen
 redactor_error_notwriteable = Konfigurationsdatei "{0}" ist nicht beschreibbar!
@@ -58,6 +72,10 @@ redactor_profiles_nodesc = Keine Beschreibung angegeben!
 redactor_profiles_noconfig = Keine Redactor-Konfiguration angegeben!
 redactor_css_saved = CSS wurde aktualisiert!
 redactor_css_not_saved = CSS konnte nicht gespeichert werden!
+redactor_js_saved = JavaScript wurde aktualisiert!
+redactor_js_not_saved = JavaScript konnte nicht gespeichert werden!
+redactor_clips_saved = Clips wurden aktualisiert!
+redactor_cllips_not_saved = Clips konnten nicht gespeichert werden!
 
 # Erklärung / Hilfe / Module
 redactor_shorthelp = Das Addon bindet den WYSIWYG-Editor redactor im Backend und bei Bedarf auch im Frontend ein.

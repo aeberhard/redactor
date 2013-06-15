@@ -1,0 +1,22 @@
+
+plugins: ['fullscreen'],
+
+buttons: [
+	'html', '|',
+	'formatting', '|',
+	'bold', 'italic', 'deleted', 'underline', '|',
+	'alignment', '|',
+	'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+	'rex_link', 'rex_linkmap', 'rex_unlink', 'rex_image', 'rex_media', 'horizontalrule', '|'
+	],
+
+focus: false,
+autoresize: false,
+cleanup: true,
+convertLinks: false,
+fixedBox: true,
+wym: false,
+
+rex_linktitle: true,  // title-Attribut bei REDAXO-Links ausgeben (Artikelname)
+rex_mediatitle: true, // title-Attribut bei Bildern ausgeben (Titel aus Medienpool)
+rex_filetitle: true,  // title-Attribut bei Dateilinks ausgeben (Titel aus Metadaten)

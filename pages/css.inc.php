@@ -23,8 +23,8 @@ if ($func == 'update')
 {
   $sqlu = new rex_sql();
   $sqlu->debugsql=0;
-  
-  $query = 'SELECT configuration FROM '.$table.' WHERE id = 1 AND ptype = 1 ';
+
+  $query = 'SELECT configuration FROM '.$table.' WHERE id = \'1\' AND ptype = \'1\' ';
   $sql = new rex_sql;
   $sql->debugsql=0;
   $sql->setQuery($query);
@@ -33,7 +33,7 @@ if ($func == 'update')
     $sqlu->setTable($table);
     $sqlu->setValue('id', '1');
     $sqlu->setValue('configuration', $css);
-    $sqlu->setWhere('id = 1 AND ptype = 1');
+    $sqlu->setWhere('id = \'1\' AND ptype = \'1\'');
     if($sqlu->update())
     {
       echo rex_info($I18N->msg('redactor_css_saved'));
@@ -63,7 +63,7 @@ if ($func == 'update')
 }
 
 // CSS aus Tabelle bereitstellen
-  $query = 'SELECT configuration FROM '.$table.' WHERE id = 1 AND ptype = 1 ';
+  $query = 'SELECT configuration FROM '.$table.' WHERE id = \'1\' AND ptype = \'1\' ';
   $sql = new rex_sql;
   $sql->debugsql=0;
   $sql->setQuery($query);

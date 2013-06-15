@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['by'] = {
+(function ($) {
+$.Redactor.opts.langs['by'] = {
     html: 'Код',
     video: 'Відэа',
     image: 'Малюнак',
@@ -64,5 +64,7 @@ RELANG['by'] = {
     anchor: 'Anchor',
 	link_new_tab: 'Open link in new tab',
 	underline: 'Underline',
-	alignment: 'Alignment'
+	alignment: 'Alignment',
+	filename: 'Name (optional)'
 };
+})( jQuery );

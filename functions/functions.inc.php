@@ -11,11 +11,11 @@
  */
 
 
-if (!isset($REX['FILEPERM'])) 
+if (!isset($REX['FILEPERM']))
 {
   $REX['FILEPERM'] = octdec(664); // oktaler wert
 }
-if (!isset($REX['DIRPERM'])) 
+if (!isset($REX['DIRPERM']))
 {
   $REX['DIRPERM'] = octdec(775); // oktaler wert
 }
@@ -89,10 +89,10 @@ if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
   function rex_copyDir($srcdir, $dstdir, $startdir = "")
   {
     global $REX;
-    
+
     $debug = FALSE;
     $state = TRUE;
-    
+
     if(!is_dir($dstdir))
     {
     $dir = '';
@@ -103,21 +103,21 @@ if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
       {
       if($debug)
         echo "Create dir '$dir'<br />\n";
-        
+
       mkdir($dir);
       chmod($dir, $REX['DIRPERM']);
       }
     }
     }
-    
+
     if($curdir = opendir($srcdir))
     {
     while($file = readdir($curdir))
     {
       if($file != '.' && $file != '..' && $file != '.svn')
       {
-      $srcfile = $srcdir . DIRECTORY_SEPARATOR . $file;    
-      $dstfile = $dstdir . DIRECTORY_SEPARATOR . $file;    
+      $srcfile = $srcdir . DIRECTORY_SEPARATOR . $file;
+      $dstfile = $dstdir . DIRECTORY_SEPARATOR . $file;
       if(is_file($srcfile))
       {
         $isNewer = TRUE;
@@ -125,7 +125,7 @@ if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
         {
         $isNewer = (filemtime($srcfile) - filemtime($dstfile)) > 0;
         }
-        
+
         if($isNewer)
         {
         if($debug)
@@ -160,7 +160,7 @@ if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
 
 /**
  * String Highlight für ältere REDAXO-Versionen
- */ 
+ */
 if (!function_exists('rex_highlight_string'))
 {
 function rex_highlight_string($string, $return = false)
@@ -170,7 +170,7 @@ function rex_highlight_string($string, $return = false)
   {
     return $s;
   }
-  echo $s; 
+  echo $s;
 }
 } // End function_exists
 
@@ -307,13 +307,30 @@ function redactor_output_filter($content)
     $rp = $REX['FRONTEND_FILE'];
   }
 
+  $content = $content['subject'];
+
   $search = '</head>';
   $replace  = "\n\n" . '  <!-- Addon redactor -->';
   $replace .= "\n" . '  <link rel="stylesheet" type="text/css" href="' . $REX['HTDOCS_PATH'] . $rp . '?redactorcss=true" media="screen, projection, print" />';
   $replace .= "\n" . '  <script src="' . $REX['HTDOCS_PATH'] . $rp . '?redactorinit=true&amp;clang=' . $REX['CUR_CLANG'] . '" type="text/javascript"></script>' . "\n";
   $replace .= "\n" . '</head>' . "\n";
 
-  return str_replace($search, $replace, $content['subject']);
+  $content = str_replace($search, $replace, $content);
+
+  $table = $REX['TABLE_PREFIX'] . 'redactor_profiles';
+  $query = 'SELECT configuration FROM ' . $table . ' WHERE id = 5 AND ptype = 1 ';
+  $sql = new rex_sql;
+  $sql->debugsql=0;
+  $sql->setQuery($query);
+  if ($sql->getRows() > 0)
+  {
+    $clips = $sql->getValue('configuration');
+	 $search = '</html>';
+	 $replace = "\n" . $clips . "\n" . '</html>' . "\n";
+	 $content = str_replace($search, $replace, $content);
+  }
+
+  return $content;
 }
 } // End function_exists
 
@@ -331,17 +348,17 @@ global $REX;
     ob_end_clean();
 
   if (function_exists('header_remove'))
-  {  
+  {
     header_remove();
   }
   if (function_exists('ob_gzhandler'))
   {
     ob_start('ob_gzhandler');
-  }  
+  }
 
   header("Content-type: application/javascript");
   header('Cache-Control: public');
-  header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT'); // 7 days 
+  header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT'); // 7 days
 
   if ($REX['REDAXO'])
   {
@@ -351,7 +368,7 @@ global $REX;
   {
     $rp = $REX['FRONTEND_FILE'];
   }
-  
+
   echo '/**
  * Addon redactor Version '.$REX['ADDON']['version']['redactor'].'
  */
@@ -370,10 +387,13 @@ global $REX;
 
   echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/redactor.min.js');
   echo "\n\n\n";
-  
-  echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/fullscreen.js');
-  echo "\n\n\n";
 
+  // Plugins
+  foreach(glob($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/plugins/*.js') as $file)
+  {
+    echo '/* ' . $file . ' */' . "\n\n" . rex_get_file_contents($file) . "\n\n\n";
+  }
+//echo 'this.opts.curLang = $.Redactor.opts.langs[\'de\'];';
   $profileout = '// Init redactor-Profiles'."\n";
   $profileout .= '// ------------------------------------------------------------'."\n";
   $profileout .= 'jQuery(document).ready(function($) {'."\n";
@@ -392,10 +412,11 @@ global $REX;
     for ($i = 0; $i < $sql->getRows(); $i ++)
     {
       $configout = trim($sql->getValue('configuration'));
-      $configout = rtrim($configout, ',');
-      $configout = redactor_replace_vars($configout);
+      $configout = rtrim(trim($configout), ',');
       $configout = 'lang: \''.$sql->getValue('lang').'\', ' . "\n" . $configout;
       $configout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.default.config.js') . "\n" . $configout;
+      $configout = redactor_replace_vars($configout);
+      $configout = rtrim(trim($configout), ',');
 
       $ilang = $sql->getValue('lang');
       if ($ilang=='') $ilang = 'en';
@@ -411,7 +432,7 @@ global $REX;
       {
         $defaultredactor = "\n\n\n// " . $sql->getValue('description');
         $defaultredactor .= "\n// ------------------------------------------------------------";
-        $defaultredactor .= "\n".'RLANG = RELANG[\''.$ilang.'\']; ';
+        $defaultredactor .= "\n".'RLANG = $.Redactor.opts.langs[\'de\']; ';
         $defaultredactor .= "\n" . 'jQuery(\'textarea.redactorEditor\').redactor({';
         $defaultredactor .= "\n" . $configout;
         $defaultredactor .= "\n});";
@@ -419,7 +440,7 @@ global $REX;
 
       $profileout .= "\n\n\n// " . $sql->getValue('description');
       $profileout .= "\n// ------------------------------------------------------------";
-      $profileout .= "\n".'RLANG = RELANG[\''.$ilang.'\']; ';
+      $profileout .= "\n".'RLANG = $.Redactor.opts.langs[\'de\']; ';
       $profileout .= "\n" . 'jQuery(\'textarea.redactorEditor-'.$sql->getValue('name').'\').redactor({';
       $profileout .= "\n" . $configout;
       $profileout .= "\n});";
@@ -435,7 +456,7 @@ global $REX;
   echo '
 
 
-  
+
 }); // end document ready
 ';
   die;
@@ -456,7 +477,7 @@ global $REX;
     ob_end_clean();
 
   if (function_exists('header_remove'))
-  {  
+  {
     header_remove();
   }
   header("Content-type: application/javascript");
@@ -475,7 +496,7 @@ global $REX;
     echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/jquery.min.js');
     echo "\n\n\n";
   }
-  
+
   $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.mediapool.js');
   echo redactor_replace_vars($scriptout);
   echo "\n\n";
@@ -498,7 +519,7 @@ global $REX;
     ob_end_clean();
 
   if (function_exists('header_remove'))
-  {  
+  {
     header_remove();
   }
   header("Content-type: application/javascript");
@@ -517,7 +538,7 @@ global $REX;
     echo rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/jquery.min.js');
     echo "\n\n\n";
   }
-  
+
   $scriptout = rex_get_file_contents($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.linkmap.js');
   echo redactor_replace_vars($scriptout);
   echo "\n\n";
@@ -540,14 +561,16 @@ global $REX;
     ob_end_clean();
 
   if (function_exists('header_remove'))
-  {  
+  {
     header_remove();
   }
 
-  $css1 = rex_get_file_contents($REX['HTDOCS_PATH'] . '/files/addons/redactor/redactor/redactor.css');
-  $css2 = rex_get_file_contents($REX['HTDOCS_PATH'] . '/files/addons/redactor/redactor/rex.redactor.css');
-  
-  $css = '';
+  $file = $REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/redactor.css';
+  $css1 = '/* ' . $file . ' */' . "\n\n" . rex_get_file_contents($file);
+  $file = $REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/rex.redactor.css';
+  $css2 = '/* ' . $file . ' */' . "\n\n" . rex_get_file_contents($file);
+
+  $css = '/* CSS aus redactor-Konfiguration */' . "\n\n";
   $table = $REX['TABLE_PREFIX'] . 'redactor_profiles';
 
   $query = 'SELECT configuration FROM ' . $table . ' WHERE id = 1 AND ptype = 1 ';
@@ -556,11 +579,17 @@ global $REX;
   $sql->setQuery($query);
   if ($sql->getRows() > 0)
   {
-    $css = $sql->getValue('configuration');
+    $css .= $sql->getValue('configuration');
   }
-  
+
+  $cssplugins = '';
+  foreach(glob($REX['HTDOCS_PATH'] . 'files/addons/redactor/redactor/plugins/*.css') as $file)
+  {
+    $cssplugins .= '/* ' . $file . ' */' . "\n\n" . rex_get_file_contents($file);
+  }
+
   header("Content-type: text/css");
-  echo $css1 . "\n\n" . $css2 . "\n\n" . $css;
+  echo $css1 . "\n\n" . $cssplugins . "\n\n" . $css2 . "\n\n" . $css;
   die;
 }
 } // End function_exists
@@ -617,7 +646,7 @@ if (!function_exists('redactor_generate_image'))
         ob_end_clean();
 
       if (function_exists('header_remove'))
-      {  
+      {
         header_remove();
       }
 
@@ -670,7 +699,7 @@ global $REX;
     $replace[0] .= "\n" . '  <script src="' . $REX['HTDOCS_PATH'] . 'redaxo/index.php?redactormedia=true&amp;clang=' . $REX['CUR_CLANG'] . '&amp;opener_input_field=' . $oif . '" type="text/javascript"></script>' . "\n";
     $replace[0] .= "\n" . '</head>' . "\n";
     $search[1] = 'javascript:selectMedia(';
-    if ($inputtype=='REDACTORFILE')
+    if (($inputtype=='rex_media_ins') or ($inputtype=='redactor_link_file'))
     {
       $replace[1] = 'javascript:redactor_selectFile(';
     }
@@ -681,9 +710,9 @@ global $REX;
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="redactor" value="true" /> <!-- inserted by redactor -->' . "\n";
     $search[3] = 'page=' . $page;
-    $replace[3] = 'page=' . $page . '&amp;redactor=true';  
+    $replace[3] = 'page=' . $page . '&amp;redactor=true';
     $search[4] = 'page=medienpool';
-    $replace[4] = 'page=medienpool&amp;redactor=true'; 
+    $replace[4] = 'page=medienpool&amp;redactor=true';
     $search[5] = '<input type="hidden" name="page" value="medienpool" />';
     $replace[5] = $search[5] . "\n\n" . '<input type="hidden" name="redactor" value="true" /> <!-- inserted by redactor -->' . "\n";
   }
@@ -700,7 +729,7 @@ global $REX;
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="redactor" value="true" /> <!-- inserted by redactor -->' . "\n";
     $search[3] = 'page=' . $page;
-    $replace[3] = 'page=' . $page . '&amp;redactor=true';  
+    $replace[3] = 'page=' . $page . '&amp;redactor=true';
   }
 
   // Alles ersetzen
@@ -719,7 +748,7 @@ function redactor_media_added($params)
 {
 global $REX;
 $inputtype = rex_request('opener_input_field', 'string');
-  
+
   if (rex_request('saveandexit', 'string', '') <> '')
   {
     $scriptoutput = "\n\n" . '  <!-- Addon redactor -->';
@@ -774,7 +803,7 @@ global $REX;
   else
   {
     $scriptout = str_replace('%IMAGE_SRC%', $REX['redactor']['IMAGE_SRC'], $scriptout);
-  }  
+  }
   $scriptout = str_replace('%OPENER_INPUT_FIELD%', $oif, $scriptout);
   if ($REX['VERSION'] . $REX['SUBVERSION'] < '42')
   {
@@ -800,28 +829,40 @@ function redactor_fixhtml($html)
   $out = trim($html);
   $out = htmlspecialchars_decode($out, ENT_QUOTES);
   $search = array(
-    '<p></p>', 
-	'<hr>',
-    '<br>', 
-    '<b>', 
-    '</b>', 
-    '<i>', 
-    '</i>',
-	'"',
-	'\''
+    '<p></p>',
+    '<hr>',
+    '<hr id="horizontalrule">',
+    '<br>',
+    '<b>',
+    '</b>',
+    '<i>',
+    '</i>'
   );
   $replace = array(
-    '', 
-	'<hr />',
-    '<br />', 
-    '<strong>', 
-    '</strong>', 
-    '<em>', 
-    '</em>',
-	'&quot;',
-	'&#039;'
+    '',
+    '<hr />',
+    '<hr />',
+    '<br />',
+    '<strong>',
+    '</strong>',
+    '<em>',
+    '</em>'
   );
   $out = str_replace($search, $replace, $out);
+  
+  $search = array();
+  $replace = array();
+  // fehlende alt-Attribute einfuegen
+  $search[] = '#(?!<img[^>]*\salt[^=>]*=[^>]*>)<img[^>](.*)(>)#';
+  $replace[] = '<img alt="" \1>';
+  // fehlenden close bei img-Tag einfuegen
+  $search[] = '#(<img("[^"]*"|[^>])+)(?<!/)>#';
+  $replace[] = '\1 />';
+  // & in &amp; umsetzen
+  $search[] = '#&(?!(?i:\#((x([\dA-F]){1,5})|(104857[0-5]|10485[0-6]\d|1048[0-4]\d\d|104[0-7]\d{3}|10[0-3]\d{4}|0?\d{1,6}))|([A-Za-z\d.]{2,31}));)#x';
+  $replace[] = '&amp;';
+  $out = preg_replace($search, $replace, $out, -1);
+  
   return $out;
 }
 } // End function_exists

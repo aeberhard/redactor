@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['id'] = {
+(function ($) {
+$.Redactor.opts.langs['id'] = {
     html: 'HTML',
     video: 'Sisipkan Video...',
     image: 'Sisipkan Gambar...',
@@ -65,5 +65,7 @@ RELANG['id'] = {
     anchor: 'Jangkar',
 	link_new_tab: 'Open link in new tab',
 	underline: 'Underline',
-	alignment: 'Alignment'
+	alignment: 'Alignment',
+	filename: 'Name (optional)'
 };
+})( jQuery );

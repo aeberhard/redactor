@@ -9,7 +9,7 @@
  * @package redaxo4
  * @version svn:$Id$
  */
- 	$modulname = 'Redactor-Texteditor';
+	$modulname = 'Redactor-Texteditor';
 	$install = rex_request('install', 'integer', 0);
 	$modulid = rex_request('modul_id', 'integer', 0);
 	
@@ -29,8 +29,8 @@
 	// Modul installieren/aktualisieren
 	if ($install == 1)
 	{
-		$modul_input = rex_get_file_contents($REX["INCLUDE_PATH"] . '/addons/redactor/modul_input.txt');
-		$modul_output = rex_get_file_contents($REX["INCLUDE_PATH"] . '/addons/redactor/modul_output.txt');	
+		$modul_input = rex_get_file_contents($REX["INCLUDE_PATH"] . '/addons/redactor/redactor-modul_input.txt');
+		$modul_output = rex_get_file_contents($REX["INCLUDE_PATH"] . '/addons/redactor/redactor-modul_output.txt');	
 		
 		$sql = new rex_sql;
 		$sql->debugsql=0;
@@ -41,16 +41,16 @@
 		if ($modulid == 0)
 		{
 			$sql->setValue('name', $modulname);
-			$sql->addGlobalCreateFields();			
+			$sql->addGlobalCreateFields();
 			$sql->insert();
-			$modulid = (int) $sql->getLastId();		
+			$modulid = (int) $sql->getLastId();	
 			echo rex_info($I18N->msg('redactor_modul_added', $modulname));
 		}
 		else
 		{
 			$sql->addGlobalUpdateFields();
 			$sql->setWhere('id = \'' . $modulid . '\' ');
-			$sql->update();		
+			$sql->update();
 			echo rex_info($I18N->msg('redactor_modul_updated', $modulname));
 		}
 	}
@@ -94,7 +94,7 @@
 	{
 		echo $I18N->msg('redactor_modul_update', $modulname, $modulid);
 	}
-?>		 
+?>		
 	 </li></ul><br />
     </p>
 
@@ -102,14 +102,14 @@
 	 <strong><?php echo $I18N->msg('redactor_title_module_input'); ?></strong><br /><br />
     <?php echo $I18N->msg('redactor_help_module_input'); ?>
     </p>
-    <?php rex_highlight_string(rex_get_file_contents($REX['INCLUDE_PATH'].'/addons/redactor/modul_input.txt')); ?><br />
-	 
+    <?php rex_highlight_string(rex_get_file_contents($REX['INCLUDE_PATH'].'/addons/redactor/redactor-modul_input.txt')); ?><br />
+	
     <p class="rex-tx1">
 	 <strong><?php echo $I18N->msg('redactor_title_module_output'); ?></strong><br /><br />
     <?php echo $I18N->msg('redactor_help_module_output'); ?>
     </p>
-    <?php rex_highlight_string(rex_get_file_contents($REX['INCLUDE_PATH'].'/addons/redactor/modul_output.txt')); ?>
+    <?php rex_highlight_string(rex_get_file_contents($REX['INCLUDE_PATH'].'/addons/redactor/redactor-modul_output.txt')); ?>
   </div>
-  
+
 </div>
 

@@ -1,46 +1,13 @@
-buttonsCustom:{
-	rex_image:{
-		title: 'Bild einfügen', 
-		callback: rex_redactor_image
-	},
-	rex_media:{
-		title: 'Dateilink', 
-		dropdown:{
-			rex_media_ins:{
-				title: 'Dateilink einfügen ...',
-				callback: rex_redactor_media_ins
-			},
-			rex_media_del:{
-				title: 'Dateilink entfernen',
-				exec: 'unlink'
-			}
-		}
-	},
-	rex_link:{
-		title: 'Interner Link', 
-		dropdown:{
-			rex_link_ins:{
-				title: 'Internen Link einfügen ...',
-				callback: rex_redactor_link_ins
-			},
-			rex_link_del:{
-				title: 'Internen Link entfernen',
-				exec: 'unlink'
-			}
-		}
-		
-	}
-},
+
+plugins: ['fullscreen', 'clips', 'fontfamily', 'fontsize', 'textdirection'],
 
 buttons:[
+	'html', '|',
 	'formatting', '|',
-	'bold', 'italic', 'deleted', '|',
+	'bold', 'italic', 'deleted', 'underline', '|',
+	'alignment', 'fontcolor', 'backcolor', '|',
 	'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
-	'fontcolor', 'backcolor', '|', 
-	'alignment', '|',
-	'link', 'rex_link', 'rex_image', 'rex_media', 'video', '|',
-	'table', '|', 'horizontalrule', '|', 
-	'html' 
+	'rex_link', 'rex_linkmap', 'rex_unlink', 'rex_image', 'rex_media', 'video', 'table', 'horizontalrule', '|'
 	],
 	
 focus: false,
@@ -49,7 +16,6 @@ cleanup: true,
 convertLinks: false,
 fixedBox: true,
 wym: false,
-plugins: ['fullscreen'],
 
 colors:[
 	'#ffffff', '#000000', '#eeece1', '#1f497d', '#4f81bd', '#c0504d', '#9bbb59', '#8064a2', '#4bacc6', '#f79646', '#ffff00',
@@ -60,6 +26,6 @@ colors:[
 	'#7f7f7f', '#0c0c0c', '#1d1b10', '#0f243e', '#244061', '#632423', '#4f6128', '#3f3151', '#31859b', '#974806', '#7f6000'
 	],
 
-rex_linktitle: true,
-rex_mediatitle: true,
-rex_filetitle: true,
+rex_linktitle: true,  // title-Attribut bei REDAXO-Links ausgeben (Artikelname)
+rex_mediatitle: true, // title-Attribut bei Bildern ausgeben (Titel aus Medienpool)
+rex_filetitle: true,  // title-Attribut bei Dateilinks ausgeben (Titel aus Metadaten)

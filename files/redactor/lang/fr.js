@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['fr'] = {
+(function ($) {
+$.Redactor.opts.langs['fr'] = {
 	html: 'Code HTML',
 	video: 'Insérer une vidéo...',
 	image: 'Insérer une image...',
@@ -36,9 +36,9 @@ RELANG['fr'] = {
 	delete_row: 'Supprimer la rangée',
 	delete_table: 'Supprimer le tableau',
 	rows: 'Rangées',
-	columns: 'Colonnes',	
+	columns: 'Colonnes',
 	add_head: 'Ajouter un en-tête',
-	delete_head: 'Supprimer l\'en-tête',	
+	delete_head: 'Supprimer l\'en-tête',
 	title: 'Titre',
 	image_position: 'Position',
 	none: 'Aucun',
@@ -49,13 +49,13 @@ RELANG['fr'] = {
 	mailto: 'Courriel',
 	web: 'Adresse URL',
 	video_html_code: 'Code d\'intégration du vidéo',
-	file: 'Insérer un fichier...',	
+	file: 'Insérer un fichier...',
 	upload: 'Téléverser',
 	download: 'Télécharger',
 	choose: 'Choisir',
 	or_choose: 'Ou choisissez',
 	drop_file_here: 'Déposez le fichier ici',
-	align_left:	'Aligner à gauche',	
+	align_left:	'Aligner à gauche',
 	align_center: 'Aligner au centre',
 	align_right: 'Aligner à droite',
 	align_justify: 'Justifier',
@@ -64,5 +64,7 @@ RELANG['fr'] = {
 	anchor: 'Ancre',
 	link_new_tab: 'Ouvrir le lien dans un nouvel onglet',
 	underline: 'Underline',
-	alignment: 'Alignment'
+	alignment: 'Alignment',
+	filename: 'Name (optional)'
 };
+})( jQuery );

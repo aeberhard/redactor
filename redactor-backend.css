@@ -1,0 +1,60 @@
+/* ----------------------- */
+/* Redactor specific rules */
+/* ----------------------- */
+
+/*
+Hier koennen die CSS-Formatierungen aus dem Frontend-CSS eingefuegt werden
+damit im Backend im Editor z.B. schon die korrekten Farben angezeigt werden
+*/
+
+.redactor_editor h1, h2, h3, h4 {
+	color: #14568a !important;
+}
+.redactor_editor a {
+	color: #14568a !important;
+}
+
+/*
+WYM-Modus
+*/
+
+.redactor_editor.redactor_editor_wym {
+	padding: 10px 7px 0 7px !important;
+	background: #f6f6f6 !important;
+}
+.redactor_editor_wym div,
+.redactor_editor_wym p,
+.redactor_editor_wym ul,
+.redactor_editor_wym ol,
+.redactor_editor_wym table,
+.redactor_editor_wym dl,
+.redactor_editor_wym pre,
+.redactor_editor_wym h1,
+.redactor_editor_wym h2,
+.redactor_editor_wym h3,
+.redactor_editor_wym h4,
+.redactor_editor_wym h5,
+.redactor_editor_wym h6,
+.redactor_editor_wym blockquote {
+	margin: 0 0 5px 0;
+	padding: 10px !important;
+	border: 1px solid #e4e4e4 !important;
+	background-color: #fff !important;
+}
+.redactor_editor_wym div {
+	border: 1px dotted #aaa !important;
+}
+.redactor_editor_wym pre {
+	border: 2px dashed #e4e4e4 !important;
+	background-color: #f8f8f8 !important;
+}
+.redactor_editor_wym ul,
+.redactor_editor_wym ol {
+	padding-left: 2em !important;
+}
+.redactor_editor_wym ul li ul,
+.redactor_editor_wym ul li ol,
+.redactor_editor_wym ol li ol,
+.redactor_editor_wym ol li ul {
+	border: none !important;
+}

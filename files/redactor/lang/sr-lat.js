@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['sr-lat'] = {
+(function ($) {
+$.Redactor.opts.langs['sr-lat'] = {
 	html: 'HTML',
 	video: 'Ubaci video',
 	image: 'Ubaci fotografiju',
@@ -20,7 +20,7 @@ RELANG['sr-lat'] = {
 	fontcolor: 'Boja slova',
 	backcolor: 'Boja pozadine',
 	unorderedlist: 'Nesortirana lista',
-	orderedlist: 'Sortirana lista',	
+	orderedlist: 'Sortirana lista',
 	outdent: 'Izvuci',
 	indent: 'Uvuci',
 	redo: 'Korak napred',
@@ -68,5 +68,7 @@ RELANG['sr-lat'] = {
 	anchor: 'Sidro',
 	link_new_tab: 'Open link in new tab',
 	underline: 'Underline',
-	alignment: 'Alignment'
+	alignment: 'Alignment',
+	filename: 'Name (optional)'
 };
+})( jQuery );

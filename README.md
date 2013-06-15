@@ -1,11 +1,16 @@
 redactor-Addon für REDAXO 4
 ===========================
 
-redactor v8.2.6 - Fantastic WYSIWYG editor on jQuery - http://imperavi.com/redactor/
+redactor v9.0.1 - Fantastic WYSIWYG editor on jQuery - http://imperavi.com/redactor/
 
-Das Addon bindet den WYSIWYG-Editor redactor im Backend und bei Bedarf auch im Frontend ein. 
+Das Addon bindet den WYSIWYG-Editor redactor im Backend und bei Bedarf auch im Frontend ein.
 
-Peter spendiert hier eine Entwicklerlizenz
+Das Addon ist vorkonfiguriert inklusive Linkmap/Mediapool-Integration. Die Konfiguration
+kann bei Bedarf im Backend angepasst werden. Zusätzlich kann eigener JavaScript-Code und Clips zum
+einfügen in Redactor gepflegt werden.
+
+
+Peter Bickel hat die Entwicklerlizenz spendiert!
 
 
 Changelog

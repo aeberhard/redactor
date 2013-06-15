@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['pt'] = {
+(function ($) {
+$.Redactor.opts.langs['pt_pt'] = {
 	html: 'HTML',
 	video: 'Inserir Video...',
 	image: 'Inserir Imagem...',
@@ -63,4 +63,8 @@ RELANG['pt'] = {
 	deleted: 'Eliminado',
 	anchor: 'Âncora',
 	link_new_tab: 'Abrir hiperligação em novo separador'
+	underline: 'Underline',
+	alignment: 'Alignment',
+	filename: 'Name (optional)'
 };
+})( jQuery );

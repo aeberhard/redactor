@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['ba'] = {
+(function ($) {
+$.Redactor.opts.langs['ba'] = {
 	html: 'HTML',
 	video: 'Ubaci video',
 	image: 'Ubaci fotografiju',
@@ -20,7 +20,7 @@ RELANG['ba'] = {
 	fontcolor: 'Boja slova',
 	backcolor: 'Boja pozadine',
 	unorderedlist: 'Nesortirana lista',
-	orderedlist: 'Sortirana lista',	
+	orderedlist: 'Sortirana lista',
 	outdent: 'Izvuci',
 	indent: 'Uvuci',
 	redo: 'Korak naprijed',
@@ -68,5 +68,7 @@ RELANG['ba'] = {
 	anchor: 'Sidro',
 	link_new_tab: 'Open link in new tab',
 	underline: 'Underline',
-	alignment: 'Alignment'
+	alignment: 'Alignment',
+	filename: 'Name (optional)'
 };
+})( jQuery );

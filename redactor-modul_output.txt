@@ -5,13 +5,13 @@
   </div>
 
 <?php } ?>
-<?php 
-// Mit der Funktion redactor_fixhtml kann eine bereinigte HTML-Ausgabe erzeugt werden
-// z.B. <br> wird <br />, <b> wird <strong>
+<?php
+/* ---
+ Mit der Funktion redactor_fixhtml kann eine bereinigte HTML-Ausgabe erzeugt werden
+ z.B. <br> wird <br />, <b> wird <strong>
 
-/*  
   echo '<div class="redactorwysiwyg">';
   echo redactor_fixhtml('REX_HTML_VALUE[1]');
   echo '</div>';
-*/
+--- */
 ?>

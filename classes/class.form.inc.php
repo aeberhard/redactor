@@ -31,10 +31,10 @@
       $msg .= $I18N->msg('redactor_profiles_nodesc')."<br />";
     }
 
-    $el =& $this->getElement($this->fieldset, 'configuration');
+    /*$el =& $this->getElement($this->fieldset, 'configuration');
     if (trim($el->getValue()) == '') {
       $msg .= $I18N->msg('redactor_profiles_noconfig')."<br />";
-    }
+    }*/
 
     if ($msg<>'')
       return $msg;

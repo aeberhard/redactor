@@ -1,6 +1,5 @@
-// goon.js
-var RELANG = {};
-RELANG['th'] = {
+(function ($) {
+$.Redactor.opts.langs['th'] = {
 	html: 'HTML',
 	video: 'ใส่วีดีโอ...',
 	image: 'แนบรูป...',
@@ -21,25 +20,25 @@ RELANG['th'] = {
 	fontcolor: 'สีตัวอักษร',
 	backcolor: 'สีพื้นหลัง',
 	unorderedlist: 'รายการแบบไม่มีลำดับ',
-	orderedlist: 'รายการแบบมีลำดับ',	
+	orderedlist: 'รายการแบบมีลำดับ',
 	outdent: 'เลื่อนออก',
 	indent: 'เลื่อนเข้า',
-	cancel: 'ยกเลิก',	
+	cancel: 'ยกเลิก',
 	insert: 'แนบ',
-	save: 'บันทึก',	
+	save: 'บันทึก',
 	_delete: 'ลบ',
-	insert_table: 'ใส่ตาราง...',		
+	insert_table: 'ใส่ตาราง...',
 	insert_row_above: 'แทรกแถวใหม่ด้านบน',
 	insert_row_below: 'แทรกแถวใหม่ด้านล่าง',
 	insert_column_left: 'แทรกคอลัมน์ทางซ้าย',
-	insert_column_right: 'แทรกคอลัมน์ทางขวา',									
-	delete_column: 'ลบคอลัมน์',									
-	delete_row: 'ลบแถว',									
+	insert_column_right: 'แทรกคอลัมน์ทางขวา',
+	delete_column: 'ลบคอลัมน์',
+	delete_row: 'ลบแถว',
 	delete_table: 'ลบตาราง',
 	rows: 'แถว',
-	columns: 'คอลัมน์',	
+	columns: 'คอลัมน์',
 	add_head: 'ใส่หัวข้อ',
-	delete_head: 'ลบหัวข้อ',	
+	delete_head: 'ลบหัวข้อ',
 	title: 'หัวเรื่อง',
 	image_position: 'ตำแหน่งรูป',
 	none: 'ปรกติ',
@@ -50,13 +49,13 @@ RELANG['th'] = {
 	mailto: 'อีเมล',
 	web: 'เว็บไซต์',
 	video_html_code: 'โค้ดวีดีโอ',
-	file: 'แนบไฟล์...',	
+	file: 'แนบไฟล์...',
 	upload: 'อัพโหลด',
 	download: 'ดาวน์โหลด',
 	choose: 'เลือก',
 	or_choose: 'หรือเลือกไฟล์',
 	drop_file_here: 'ลากไฟล์มาวางที่นี่',
-	align_left:	'จัดตัวอักษรชิดซ้าย',	
+	align_left:	'จัดตัวอักษรชิดซ้าย',
 	align_center: 'จัดตัวอักษรกึ่งกลาง',
 	align_right: 'จัดตัวอักษรชิดขวา',
 	align_justify: 'จัดตัวอักษรแบบพอดีกรอบ',
@@ -65,5 +64,7 @@ RELANG['th'] = {
 	anchor: 'เชื่อมโยง',
 	link_new_tab: 'เปิดลิงค์ในแทปใหม่',
 	underline: 'เส้นใต้',
-	alignment: 'การจัดวาง'
+	alignment: 'การจัดวาง',
+	filename: 'Name (optional)'
 };
+})( jQuery );

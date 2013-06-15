@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['fi'] = {
+(function ($) {
+$.Redactor.opts.langs['fi'] = {
 	html: 'HTML',
 	video: 'Video',
 	image: 'Kuva',
@@ -68,5 +68,7 @@ RELANG['fi'] = {
 	anchor: 'Ankkuri',
 	link_new_tab: 'Open link in new tab',
 	underline: 'Underline',
-	alignment: 'Alignment'
+	alignment: 'Alignment',
+	filename: 'Name (optional)'
 };
+})( jQuery );

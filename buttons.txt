@@ -1,0 +1,9 @@
+
+- PSD als png speichern
+
+- Auf einer der folgenden Webseiten für css in base64-Format konvertieren
+
+  http://www.motobit.com/util/base64-decoder-encoder.asp
+  http://www.base64-image.de/
+
+- CSS anpassen mit base64-Bilddaten

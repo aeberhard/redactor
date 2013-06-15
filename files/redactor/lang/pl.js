@@ -1,5 +1,5 @@
-var RELANG = {};
-RELANG['pl'] = {
+(function ($) {
+$.Redactor.opts.langs['pl'] = {
 	html: 'Źródło',
 	video: 'Wideo',
 	image: 'Obrazek',
@@ -65,5 +65,7 @@ RELANG['pl'] = {
     anchor: 'Kotwica',
 	link_new_tab: 'Otwórz link w nowym oknie',
 	underline: 'Pokdreślony',
-	alignment: 'Wyrównanie'
+	alignment: 'Wyrównanie',
+	filename: 'Name (optional)'
 };
+})( jQuery );
