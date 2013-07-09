@@ -830,6 +830,7 @@ function redactor_fixhtml($html)
   $out = htmlspecialchars_decode($out, ENT_QUOTES);
   $search = array(
     '<p></p>',
+	 '<span></span>',
     '<hr>',
     '<hr id="horizontalrule">',
     '<br>',
@@ -840,6 +841,7 @@ function redactor_fixhtml($html)
   );
   $replace = array(
     '',
+	 '',
     '<hr />',
     '<hr />',
     '<br />',
@@ -852,16 +854,20 @@ function redactor_fixhtml($html)
   
   $search = array();
   $replace = array();
-  // fehlende alt-Attribute einfuegen
-  $search[] = '#(?!<img[^>]*\salt[^=>]*=[^>]*>)<img[^>](.*)(>)#';
-  $replace[] = '<img alt="" \1>';
+
   // fehlenden close bei img-Tag einfuegen
   $search[] = '#(<img("[^"]*"|[^>])+)(?<!/)>#';
   $replace[] = '\1 />';
+  
+  // fehlende alt-Attribute einfuegen
+  $search[] = '#<img((?:(?!alt)[^<>])*)>#im';
+  $replace[] = '<img alt=""\1>';
+  
   // & in &amp; umsetzen
   $search[] = '#&(?!(?i:\#((x([\dA-F]){1,5})|(104857[0-5]|10485[0-6]\d|1048[0-4]\d\d|104[0-7]\d{3}|10[0-3]\d{4}|0?\d{1,6}))|([A-Za-z\d.]{2,31}));)#x';
   $replace[] = '&amp;';
-  $out = preg_replace($search, $replace, $out, -1);
+
+  $out = preg_replace($search, $replace, $out);
   
   return $out;
 }

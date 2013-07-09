@@ -1,6 +1,11 @@
 Changelog redactor-Addon Version 0.7
 ====================================
 
+### Version 0.8 (2013-07-05)
+
+* Redactor v9.0.3
+* Update der Sprachdateien
+
 ### Version 0.7 (2013-06-15)
 
 * Redactor v9.0.1
