@@ -619,7 +619,7 @@ body .redactor_toolbar li a.redactor_btn_pre		 		{ background-position: -875px; 
 }
 #redactor_image_box_select {
 	display: block;
-	margin-bottom: 15px;
+	margin-bottom: 15px !important;
 	width: 200px;
 }
 #redactor_image_box img {

@@ -3,11 +3,11 @@
 
 # Addon-Eintrag und Addon-Titel
 redactor_menu_link = Redactor Editor
-redactor_title = Redactor WYSIWYG Editor <span style="font-size:10px;">(Version 0.8)</span>
+redactor_title = Redactor WYSIWYG Editor <span style="font-size:10px;">(Version 0.9)</span>
 
 # Versionen
-redactor_version = 0.8
-redactor_versinfo = redactor.js Version 9.0.3 , <a href="http://imperavi.com/redactor/" onclick="window.open(this.href); return false;">http://imperavi.com/redactor/</a>
+redactor_version = 0.9
+redactor_versinfo = redactor.js Version 9.0.4 , <a href="http://imperavi.com/redactor/" onclick="window.open(this.href); return false;">http://imperavi.com/redactor/</a>
 
 # Menüeinträge
 redactor_menu_info = Erklärung

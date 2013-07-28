@@ -1,5 +1,9 @@
-Changelog redactor-Addon Version 0.7
+Changelog redactor-Addon Version 0.9
 ====================================
+
+### Version 0.9 (2013-07-28)
+
+* Redactor v9.0.4
 
 ### Version 0.8 (2013-07-05)
 
