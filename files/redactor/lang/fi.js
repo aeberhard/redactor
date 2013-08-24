@@ -16,6 +16,7 @@ $.Redactor.opts.langs['fi'] = {
 	header2: 'Otsikko 2',
 	header3: 'Otsikko 3',
 	header4: 'Otsikko 4',
+	header5: 'Otsikko 5',
 	bold:  'Lihavointi',
 	italic: 'Kursivointi',
 	fontcolor: 'Tekstin väri',
@@ -66,6 +67,7 @@ $.Redactor.opts.langs['fi'] = {
 	link_new_tab: 'Avaa linkki uudessa välilehdessä',
 	underline: 'Alleviivaa',
 	alignment: 'Tasaus',
-	filename: 'Nimi (valinnainen)'
+	filename: 'Nimi (valinnainen)',
+	edit: 'Edit'
 };
 })( jQuery );

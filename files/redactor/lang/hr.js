@@ -15,6 +15,7 @@
 		header2: 'Zaglavlje 2',
 		header3: 'Zaglavlje 3',
 		header4: 'Zaglavlje 4',
+		header5: 'Zaglavlje 5',
 		bold: 'Podebljaj',
 		italic: 'Nakosi',
 		fontcolor: 'Boja slova',
@@ -65,6 +66,7 @@
 		link_new_tab: 'Otvori u novom prozoru',
 		underline: 'Podvuci',
 		alignment: 'Poravnanje',
-		filename: 'Naziv (neobavezno)'
+		filename: 'Naziv (neobavezno)',
+		edit: 'Edit'
 	};
 })(jQuery);
