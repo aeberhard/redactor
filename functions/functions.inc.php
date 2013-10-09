@@ -624,22 +624,29 @@ if (!function_exists('redactor_generate_image'))
     global $REX;
 
     $redactorimg = rex_request('redactorimg', 'string', '');
+    //$redactorimg = str_replace(array('..', '/', '\\'), '', $redactorimg);
+    $redactorimg = basename($redactorimg);
     $file = $REX['MEDIAFOLDER'] . '/' . $redactorimg;
 
     if (file_exists($file))
     {
-
       $last_modified_time = filemtime($file);
       $etag = md5_file($file);
       $expires = 60*60*24*14;
 
       $file_extension = strtolower(substr(strrchr($redactorimg, '.'), 1));
+      $ctype = '';
       switch ($file_extension)
       {
         case "gif": $ctype = "image/gif"; break;
         case "png": $ctype = "image/png"; break;
         case "jpeg": $ctype = "image/jpg"; break;
         case "jpg": $ctype = "image/jpg"; break;
+      }
+      if ($ctype==='')
+      {
+        header('HTTP/1.0 404 Not Found');
+        die;
       }
 
       while (ob_get_level())
@@ -662,9 +669,15 @@ if (!function_exists('redactor_generate_image'))
       } else {
           header("Content-type: " . $ctype);
           header("Content-Length: " . filesize($file));
+          header('Content-Disposition: inline; filename="'. $redactorimg .'"');
           redactor_readfile_chunked($file);
           exit;
       }
+    }
+    else
+    {
+      header('HTTP/1.0 404 Not Found');
+      die;
     }
   }
 } // End function_exists

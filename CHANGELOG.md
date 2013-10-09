@@ -1,5 +1,10 @@
-Changelog redactor-Addon Version 1.0
+Changelog redactor-Addon Version 1.1
 ====================================
+
+### Version 1.1 (2013-10-09)
+
+* Behebung Sicherheitslücke in functions.inc.php redactor_generate_image()
+* Redactor v9.1.5
 
 ### Version 1.0 (2013-08-24)
 

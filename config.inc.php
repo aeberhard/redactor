@@ -13,7 +13,7 @@
 $mypage = 'redactor';
 
 // Versionsnummer, auch in den Language-Files ändern
-$REX['ADDON']['version'][$mypage] = '1.0';
+$REX['ADDON']['version'][$mypage] = '1.1';
 
 // Fix für REDAXO < 4.2.x
 if (!isset($REX['FRONTEND_FILE']))
